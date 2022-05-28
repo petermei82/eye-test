@@ -1,0 +1,178 @@
+* {
+    box-sizing: border-box;
+    font-family: Microsoft JhengHei;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #f06060;
+    height: 100vh;
+    position: relative;
+
+    .homepage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .word {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20%;
+
+            h1 {
+                color: white;
+                text-align: center;
+                font-size: 30px;
+                font-weight: bolder;
+                margin: 50px 0;
+                text-shadow: 1px 1px 1px #ab3c3c;
+            }
+
+            p {
+                text-align: center;
+                color: #FFA1A1;
+                font-size: 16px;
+            }
+        }
+
+        button {
+            width: 220px;
+            height: 70px;
+            background-color: #FCAD26;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            margin-bottom: 20%;
+            font-size: 20px;
+            color: #DDDDDD;
+            font-weight: bolder;
+            box-shadow: 0px 5px rgb(218, 150, 34);
+        }
+
+    }
+
+    .play-game {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        .time-area {
+            background-color: #FD9090;
+            border-radius: 20px;
+            width: 50px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: #FFCACA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .time {
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+
+        .pause-btn {
+            position: absolute;
+            bottom: 5%;
+            left: 0px;
+            width: 120px;
+            height: 40px;
+            background-color: #FCAD26;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            font-size: 20px;
+            color: #DDDDDD;
+            font-weight: bolder;
+            box-shadow: 0px 5px rgb(218, 150, 34);
+        }
+
+        .boxes {
+            width: 500px;
+            height: 500px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .box {
+                width: 50%;
+                height: 50%;
+                background-color: green;
+                border: 5px solid white;
+                border-radius: 20px;
+            }
+        }
+    }
+    .pause-game{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        h1{
+            color: #FFE2C5;
+            text-align: center;
+            font-size: 40px;
+            font-weight: bolder;
+            margin: 50px 0;
+            text-shadow: 1px 1px 1px #ab3c3c;
+        }
+        .continue-btn{
+            width: 220px;
+            height: 70px;
+            background-color: #FCAD26;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            margin-bottom: 20%;
+            font-size: 30px;
+            color: #DDDDDD;
+            font-weight: bolder;
+            box-shadow: 0px 5px rgb(218, 150, 34);
+        }
+    }
+    .over-game{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        p{
+            color: #DDDDDD;
+            font-size: 20px;
+            margin-top: 100px;
+        }
+        .score{
+            h1{
+                color: #332211;
+                font-size: 40px;
+                line-height: 60px;
+                margin: 0px 0px 20px;
+            }
+        }
+        .restart-btn{
+            width: 220px;
+            height: 70px;
+            background-color: #FCAD26;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            margin-bottom: 20%;
+            font-size: 30px;
+            color: #DDDDDD;
+            font-weight: bolder;
+            box-shadow: 0px 5px rgb(218, 150, 34);
+        }
+    }
+    .none {
+        display: none;
+    }
+}

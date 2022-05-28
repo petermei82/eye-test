@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色弱小遊戲</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <section class="homepage">
+            <div class="word">
+                <h1>免費色弱測試</h1>
+            <h1>The Color !</h1>
+            <p>找出所有色塊里顏色不同的一個<br>
+                Click on the tile that has a different color</p>
+            </div>
+            <button class="start-btn ">play</button>
+        </section>
+        <section class="play-game none">
+            <nav>
+                <div class="time-area">
+                    <div class="time">60</div>
+                </div>
+                <button class="pause-btn">pause</button>
+            </nav>
+        <div class="boxes"></div>
+        </section>
+        <section class="pause-game none">
+            <h1>遊戲暫停</h1>
+            <button class="continue-btn">continue</button>
+        </section>
+        <section class="over-game none">
+            <p>經鑒定，您是：</p>
+            <div class="score">
+            </div>
+            <button class="restart-btn">play again</button>
+        </section>
+
+
+        <script>
+            const c = 256;
+            let level=2;
+            let count=0;
+            let totalRight =0;
+            const boxAll = document.querySelector('.boxes');
+                
+
+            
+            game();
+            function game(){
+                let size = 100/level;
+                let color = `rgb(${Math.floor(Math.random()* c)},${Math.floor(Math.random()* c)},${Math.floor(Math.random()* c)})`;
+                boxAll.innerHTML = '';
+                
+                for (let i=0; i < level**2; i++){
+                    boxAll.innerHTML += `<div class="box" style="width:${size}%; height:${size}%; background-color: ${color};"></div>`;
+                }
+                answer = Math.floor(Math.random()*level**2)+1;
+                let answerBox = document.querySelector(`.boxes .box:nth-child(${answer})`); // :nth:child=>從一開始
+                answerBox.style.opacity = `${0.5+level*0.05}`;
+                
+                // 找到不是
+                let notAnswerBox = document.querySelectorAll(`.boxes .box:not(:nth-child(${answer}))`);
+                notAnswerBox.forEach(function(box){
+                    box.addEventListener('click',function(){
+                        return;
+                    });
+                })
+                // 找答案盒子
+                // let answerBox = document.querySelector('.answer-box');
+                answerBox.addEventListener('click',function(){ 
+                    count++
+                    totalRight++
+                    if(count == level){
+                        level++;
+                        count = 0;
+                    }
+                    if(level > 20){
+                        alert("再來一次");
+                        notAnswerBox
+                        level = 2;
+                        count = 0;
+                    }
+                    game();
+                });
+            }
+            
+            const homepage = document.querySelector('.homepage');
+            const play_game = document.querySelector('.play-game');
+            const pause_game = document.querySelector('.pause-game');
+            const over_game = document.querySelector('.over-game');
+            const start_btn = document.querySelector('.start-btn');
+            const pause_btn = document.querySelector('.pause-btn');
+            const restart_btn = document.querySelector('.restart-btn');
+            const continue_btn = document.querySelector('.continue-btn');
+            const youtime = 60;
+            let score = document.querySelector('.score');
+            let timeS = document.querySelector('.time');
+
+            let timeId;
+
+
+            function countdown(){
+                clearInterval(timeId);
+                timeId = setInterval(function(){
+
+                        if(time == 0){
+                            alert("時間到");
+                            over_game.classList.remove('none');
+                            score.innerHTML = `<h1>蝙蝠lv${totalRight}</h1>`;
+                            play_game.classList.add('none');
+                            clearInterval(timeId);
+                        }else{
+                            time--;
+                            timeS.innerHTML = time;
+                        }
+                    },1000);
+                }
+            
+
+            start_btn.addEventListener('click',function(){
+                homepage.classList.add('none');
+                over_game.classList.add('none');
+                play_game.classList.remove('none');
+                time = youtime;
+                timeS.innerHTML = time;
+                countdown();
+                totalRight = 0;
+                level=2;
+                count=0;
+                game();
+            })
+
+            pause_btn.addEventListener('click',function(){
+                pause_game.classList.remove('none');
+                play_game.classList.add('none');
+                clearInterval(timeId);
+            });
+            continue_btn.addEventListener('click',function(){
+                pause_game.classList.add('none');
+                play_game.classList.remove('none');
+                countdown();
+            });
+            restart_btn.addEventListener('click',function(){
+                over_game.classList.add('none');
+                homepage.classList.remove('none');
+
+            });
+        </script>
+</body>
+</html>
